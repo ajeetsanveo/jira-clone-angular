@@ -12,6 +12,7 @@ import { ProjectState } from './state/project/project.store';
 export class ProjectGuard implements CanActivate {
   constructor(private _projectQuery: ProjectQuery, private _projectService: ProjectService) {}
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    debugger
     return this.getFromStoreOrApi().pipe(
       switchMap(() => of(true)),
       catchError(() => of(false))
@@ -19,6 +20,7 @@ export class ProjectGuard implements CanActivate {
   }
 
   getFromStoreOrApi(): Observable<ProjectState> {
+    debugger;
     return combineLatest([this._projectQuery.all$, this._projectQuery.isLoading$]).pipe(
       map(([state, loading]) => {
         if (!loading) {

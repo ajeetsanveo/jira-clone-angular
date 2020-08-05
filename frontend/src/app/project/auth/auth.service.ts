@@ -18,7 +18,7 @@ export class AuthService {
     this._http
       .get<JUser>(`${this.baseUrl}/auth.json`)
       .pipe(
-        map((user) => {
+        map((user) => {        
           this._store.update((state) => ({
             ...state,
             ...user

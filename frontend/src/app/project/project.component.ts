@@ -14,6 +14,8 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Here we call the api to get the user data from api, after getting the user data, it is
+    // automatically updated by state-management.
     this._authService.login(new LoginPayload());
     this._projectService.getProject();
     this.handleResize();
@@ -22,7 +24,7 @@ export class ProjectComponent implements OnInit {
   handleResize() {
     const match = window.matchMedia('(min-width: 1024px)');
     match.addEventListener('change', (e) => {
-      console.log(e)
+      console.log(e);
       this.expanded = e.matches;
     });
   }
